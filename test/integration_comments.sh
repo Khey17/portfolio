@@ -20,10 +20,8 @@ YAML
 
 bundle exec jekyll build --config "_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null
 
-baseurl="$(ruby -ryaml -e 'cfg = Psych.unsafe_load_file("_config.yml"); puts(cfg["baseurl"].to_s)')"
-
-giscus_page="${tmp_site}${baseurl}/blog/2022/giscus-comments/index.html"
-disqus_page="${tmp_site}${baseurl}/blog/2015/disqus-comments/index.html"
+giscus_page="${tmp_site}/blog/2022/giscus-comments/index.html"
+disqus_page="${tmp_site}/blog/2015/disqus-comments/index.html"
 
 grep -q 'https://giscus.app/client.js' "${giscus_page}"
 if grep -q 'giscus comments misconfigured' "${giscus_page}"; then

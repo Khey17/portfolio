@@ -2,38 +2,32 @@
 layout: about
 title: about
 permalink: /
-subtitle: Developer · Builder · Lifelong learner
+subtitle: Research Software Engineer · University of Delaware
 
 profile:
   align: right
   image: prof_pic.jpg
-  image_circular: false # crops the image to make it circular
+  image_circular: false
   more_info: >
-    <p>your.email@example.com</p>
-    <p>Your City, Country</p>
+    <p>Department of Mathematical Sciences</p>
+    <p>University of Delaware, Newark, DE</p>
 
-selected_papers: false # set to true once you add publications in _bibliography/papers.bib
-social: true # includes social icons at the bottom of the page
+selected_papers: false
+social: true
 
 announcements:
-  enabled: true # includes a list of news items
-  scrollable: true # adds a vertical scroll bar if there are more than 3 news items
-  limit: 5 # leave blank to include all the news in the `_news` folder
+  enabled: true
+  scrollable: true
+  limit: 5
 
 latest_posts:
-  enabled: false # enable after adding posts to _posts/ and removing _posts/ from exclude in _config.yml
+  enabled: false
   scrollable: true
   limit: 3
 ---
 
-Welcome to my portfolio. I'm **Your Name** — I build software, explore new ideas, and share what I learn along the way.
+I am a **Research Software Engineer** in the Department of Mathematical Sciences at the **University of Delaware**, working on scientific machine learning for partial differential equations (PDEs). My current research focuses on building hybrid solvers that combine neural networks with classical numerical methods.
 
-This site is built with [al-folio](https://github.com/alshedivat/al-folio), a Jekyll theme designed for academics and professionals. Use the navigation above to explore my [projects](/portfolio/projects/), [publications](/portfolio/publications/), [CV](/portfolio/cv/), and [repositories](/portfolio/repositories/).
+I am developing a learned **Hierarchical Poincaré–Steklov solver** for semilinear elliptic PDEs that achieves significant speedups over traditional solvers while maintaining controlled accuracy.
 
-**Getting started with your own content:**
-
-1. Replace `assets/img/prof_pic.jpg` with your profile photo
-2. Edit `_data/socials.yml` with your links and email
-3. Add projects in `_projects/` (see the portfolio website example)
-4. Update `_data/cv.yml` or `assets/json/resume.json` for your CV
-5. Add publications to `_bibliography/papers.bib` when ready
+**Research interests:** Computer Vision; Scientific Machine Learning (Operator Learning, Physics-Informed Neural Networks, and Equivariant Neural Networks); Computational Optimal Transport.

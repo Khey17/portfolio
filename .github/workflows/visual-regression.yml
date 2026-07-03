@@ -61,6 +61,9 @@ jobs:
 
       - name: Prepare baseline worktree (v0.16.3) 🧱
         run: |
+          if ! git rev-parse --verify v0.16.3^{commit} >/dev/null 2>&1; then
+            git fetch --depth=1 https://github.com/alshedivat/al-folio.git tag v0.16.3
+          fi
           git worktree add ../al-folio-baseline v0.16.3
           (cd ../al-folio-baseline && bundle install && npm ci)
 

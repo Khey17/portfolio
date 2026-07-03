@@ -6,50 +6,65 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-import cv2
 from PIL import Image
 
 
-def detect_face_center(image_bgr) -> tuple[int, int] | None:
-    cascade_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-    detector = cv2.CascadeClassifier(cascade_path)
-    gray = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2GRAY)
-    faces = detector.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(80, 80))
-    if len(faces) == 0:
+def detect_face_box(image_rgb) -> tuple[int, int, int, int] | None:
+    try:
+        import cv2
+        import numpy as np
+
+        if not hasattr(cv2, "CascadeClassifier"):
+            return None
+
+        bgr = cv2.cvtColor(np.array(image_rgb), cv2.COLOR_RGB2BGR)
+        detector = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+        faces = detector.detectMultiScale(
+            cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY),
+            scaleFactor=1.08,
+            minNeighbors=5,
+            minSize=(80, 80),
+        )
+        if len(faces) == 0:
+            return None
+        x, y, w, h = max(faces, key=lambda box: box[2] * box[3])
+        return int(x), int(y), int(w), int(h)
+    except Exception:
         return None
-    x, y, w, h = max(faces, key=lambda box: box[2] * box[3])
-    return x + w // 2, y + h // 2
 
 
-def crop_upper_body(
+def estimate_face_box(width: int, height: int) -> tuple[int, int, int, int]:
+    """Fallback for full-body portraits with the subject centered slightly right."""
+    face_h = int(height * 0.11)
+    face_w = int(face_h * 0.85)
+    cx = int(width * 0.56)
+    cy = int(height * 0.36)
+    return cx - face_w // 2, cy - face_h // 2, face_w, face_h
+
+
+def crop_face_and_chest(
     source: Path,
     destination: Path,
     *,
-    bottom_ratio: float = 0.52,
+    top_margin: float = 0.55,
+    bottom_margin: float = 2.1,
     aspect_ratio: float = 0.82,
     output_size: int = 900,
 ) -> None:
     image = Image.open(source).convert("RGB")
     width, height = image.size
 
-    face_center = None
-    try:
-        import numpy as np
+    face = detect_face_box(image) or estimate_face_box(width, height)
+    x, y, fw, fh = face
+    cx = x + fw // 2
+    cy = y + fh // 2
 
-        bgr = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-        face_center = detect_face_center(bgr)
-    except Exception:
-        face_center = None
-
-    center_x = face_center[0] if face_center else width // 2
-    face_y = face_center[1] if face_center else int(height * 0.18)
-
-    crop_bottom = min(height, int(height * bottom_ratio))
-    crop_top = max(0, face_y - int((crop_bottom - face_y) * 0.35))
-
+    crop_top = max(0, y - int(fh * top_margin))
+    crop_bottom = min(height, cy + int(fh * bottom_margin))
     crop_height = crop_bottom - crop_top
     crop_width = int(crop_height * aspect_ratio)
-    left = max(0, min(center_x - crop_width // 2, width - crop_width))
+
+    left = max(0, min(cx - crop_width // 2, width - crop_width))
     right = left + crop_width
     if right > width:
         right = width
@@ -66,7 +81,7 @@ def main() -> None:
     parser.add_argument(
         "--source",
         type=Path,
-        default=Path("assets/img/prof_pic_source.jpg"),
+        default=Path("assets/img/profile_pic_source.png"),
         help="Original portrait photo",
     )
     parser.add_argument(
@@ -76,17 +91,28 @@ def main() -> None:
         help="Cropped profile image used by the site",
     )
     parser.add_argument(
-        "--bottom-ratio",
+        "--top-margin",
         type=float,
-        default=0.52,
-        help="Crop bottom edge as a fraction of image height (chest/core)",
+        default=0.55,
+        help="Space above the face as a multiple of face height",
+    )
+    parser.add_argument(
+        "--bottom-margin",
+        type=float,
+        default=2.1,
+        help="Distance below face center to crop bottom, as a multiple of face height",
     )
     args = parser.parse_args()
 
     if not args.source.exists():
         raise SystemExit(f"Source image not found: {args.source}")
 
-    crop_upper_body(args.source, args.destination, bottom_ratio=args.bottom_ratio)
+    crop_face_and_chest(
+        args.source,
+        args.destination,
+        top_margin=args.top_margin,
+        bottom_margin=args.bottom_margin,
+    )
     print(f"Wrote cropped profile image to {args.destination}")
 
 

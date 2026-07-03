@@ -222,9 +222,9 @@ exclude:
   - package.json
   - package-lock.json
   - _pages/about_einstein.md
-  - _pages/blog.md
   - _pages/dropdown.md
   - _pages/profiles.md
+  - _pages/publications.md
   - _pages/teaching.md
   - _posts/2015-03-15-formatting-and-links.md
   - _posts/2015-05-15-images.md
@@ -266,6 +266,7 @@ exclude:
   - _news/announcement_2.md
   - _news/announcement_3.md
   - _books/
+  - _bibliography/
   - _teachings/
   - purgecss.config.js
   - README.md

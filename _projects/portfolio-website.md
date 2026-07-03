@@ -4,7 +4,7 @@ title: Portfolio Website
 description: A personal portfolio built with al-folio and deployed on GitHub Pages.
 importance: 1
 category: work
-github: khey17/portfolio
+github: https://github.com/khey17/portfolio
 ---
 
 This site is a personal portfolio powered by the [al-folio](https://github.com/alshedivat/al-folio) Jekyll theme.

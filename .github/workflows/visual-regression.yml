@@ -36,6 +36,8 @@ on:
 
 jobs:
   visual-regression:
+    # Upstream parity tests compare against the v0.16.3 demo site; skip on customized forks.
+    if: github.repository == 'alshedivat/al-folio'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:

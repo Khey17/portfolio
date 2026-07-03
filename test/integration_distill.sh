@@ -20,7 +20,9 @@ YAML
 
 bundle exec jekyll build --config "_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null
 
-distill_page="${tmp_site}/blog/2021/distill/index.html"
+baseurl="$(ruby -ryaml -e 'cfg = Psych.unsafe_load_file("_config.yml"); puts(cfg["baseurl"].to_s)')"
+
+distill_page="${tmp_site}${baseurl}/blog/2021/distill/index.html"
 
 if [ ! -f "${distill_page}" ]; then
   echo "distill page was not generated at ${distill_page}" >&2

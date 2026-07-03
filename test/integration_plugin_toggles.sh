@@ -15,7 +15,9 @@ remove_plugin_and_build() {
   ruby -rpsych -e "cfg = Psych.unsafe_load_file('_config.yml'); plugins = Array(cfg['plugins']).reject { |p| p == '${plugin}' }; puts({ 'plugins' => plugins }.to_yaml)" >"${override}"
 
   bundle exec jekyll build --config "_config.yml,${override}" -d "${output_site}" >/dev/null
-  if [ ! -f "${output_site}/index.html" ]; then
+  local baseurl
+  baseurl="$(ruby -ryaml -e 'cfg = Psych.unsafe_load_file("_config.yml"); puts(cfg["baseurl"].to_s)')"
+  if [ ! -f "${output_site}${baseurl}/index.html" ]; then
     echo "expected site output for plugin toggle ${plugin}" >&2
     exit 1
   fi

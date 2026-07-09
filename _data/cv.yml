@@ -2,7 +2,7 @@
 
 cv:
   name: Karthikheyaa Kurra
-  headline: Research Associate · Scientific Machine Learning
+  label: Research Associate · Scientific Machine Learning
   location: Newark, DE
   email: karth@udel.edu
   phone: +1-267-299-9245
@@ -14,7 +14,7 @@ cv:
       username: khey17
 
   sections:
-    education:
+    Education:
       - institution: University of Delaware
         area: Data Science
         degree: M.S.
@@ -30,7 +30,7 @@ cv:
         start_date: 2020-10
         end_date: 2024-05
 
-    experience:
+    Experience:
       - company: University of Delaware — Department of Mathematical Sciences
         position: Research Associate, Scientific Machine Learning
         location: Newark, DE
@@ -63,18 +63,29 @@ cv:
         start_date: 2023-01
         end_date: 2023-04
 
-    skills:
-      - label: Languages
-        details: Python, MATLAB, R, SQL, Bash, LaTeX
-      - label: Scientific ML
-        details: PyTorch, NumPy/SciPy, Operator Learning, Physics-Informed Neural Networks (PINNs)
-      - label: Tools
-        details: Git, Docker, Linux, HPC job scripting, VS Code, Cursor
+    Skills:
+      - name: Languages
+        keywords:
+          - Python
+          - MATLAB
+          - R
+          - SQL
+          - Bash
+          - LaTeX
+      - name: Scientific ML
+        keywords:
+          - PyTorch
+          - NumPy/SciPy
+          - Operator Learning
+          - Physics-Informed Neural Networks (PINNs)
+      - name: Tools
+        keywords:
+          - Git
+          - Docker
+          - Linux
+          - HPC job scripting
+          - VS Code
+          - Cursor
 
-    reading groups:
-      - name: Scientific Machine Learning Reading Group
-        location: "University of Delaware (Advisor: Dr. Ke Chen)"
-        start_date: 2025
-        end_date: present
-        highlights:
-          - "Weekly seminar with rotating student presentations of research literature; topics include Computational Optimal Transport (Peyré & Cuturi), Equivariant Neural Networks, and One-Shot Learning."
+    Reading Groups:
+      - bullet: "Scientific Machine Learning Reading Group, University of Delaware (Advisor: Dr. Ke Chen), 2025–Present. Weekly seminar with rotating student presentations of research literature; topics include Computational Optimal Transport (Peyré & Cuturi), Equivariant Neural Networks, and One-Shot Learning."

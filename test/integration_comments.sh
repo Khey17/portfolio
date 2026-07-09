@@ -16,6 +16,12 @@ giscus:
   repo_id: R_kgDOExample
   category: Comments
   category_id: DIC_kwDOExample
+defaults:
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      published: true
 YAML
 
 bundle exec jekyll build --config "_config.yml,${tmp_override}" -d "${tmp_site}" >/dev/null

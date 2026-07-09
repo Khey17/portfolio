@@ -73,7 +73,7 @@ cv:
 
     reading groups:
       - name: Scientific Machine Learning Reading Group
-        location: University of Delaware (Advisor: Dr. Ke Chen)
+        location: "University of Delaware (Advisor: Dr. Ke Chen)"
         start_date: 2025
         end_date: present
         highlights:

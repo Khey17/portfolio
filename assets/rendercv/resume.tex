@@ -1,0 +1,158 @@
+%-------------------------
+% Resume in LaTeX — Karthikheyaa Kurra (research-oriented)
+% Based on Jake Gutierrez's template (jakegut/resume), MIT license
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generated pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Karthikheyaa Kurra} \\ \vspace{1pt}
+    \small 267-299-9245 $|$ \href{mailto:karth@udel.edu}{karth@udel.edu} $|$
+    \href{https://github.com/Khey17}{\underline{GitHub}} $|$
+    \href{https://khey17.github.io/portfolio/}{\underline{Portfolio}} $|$
+    \href{https://linkedin.com/in/karthikheyaa}{\underline{LinkedIn}}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {University of Delaware}{Newark, DE}
+      {M.S.\ Data Science, GPA 3.80/4.00}{Aug 2024 -- May 2026}
+      \resumeItemListStart
+        \resumeItem{\textbf{Coursework:} Probability Theory \& Applications, Mathematical Techniques for Data Science (Optimization), Applied Multivariate Statistics, Machine Learning, Algorithm Design \& Analysis, Research Software Engineering}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Sathyabama Institute of Science \& Technology}{Chennai, India}
+      {B.E.\ Computer Science \& Engineering}{Oct 2020 -- May 2024}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Research Associate, Scientific Machine Learning}{Jun 2025 -- Present}
+      {Department of Mathematical Sciences, University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
+      \resumeItemListStart
+        \resumeItem{Developing hybrid classical and neural solvers for semilinear elliptic PDEs: learned surrogates that replace iterative Newton solves with a single forward pass, amortizing solution cost across problem instances (manuscript in preparation).}
+        \resumeItem{Built the project's end-to-end research infrastructure: high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines.}
+        \resumeItem{Drove architecture and loss design through controlled ablation studies covering network normalization and physics-informed residual losses with adaptive loss balancing, alongside systematic wall-clock profiling of classical versus learned inference.}
+        \resumeItem{Maintain a regression-locked, unit-tested codebase with automated experiment reports that set weekly research direction with the PI.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Software Engineer, LLM Serving \& Benchmarking}{Jun 2026 -- Present}
+      {Dept.\ of Computer \& Information Sciences, UD \, (Advisor: Dr.\ Sunita Chandrasekaran)}{Newark, DE}
+      \resumeItemListStart
+        \resumeItem{Member of a research software engineering team building an on-premise LLM assistant for University of Delaware students, faculty, and staff.}
+        \resumeItem{Benchmarking LLM inference and serving performance (throughput, latency, model selection) on NVIDIA DGX hardware to inform deployment decisions.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Research Intern, Computer Vision}{Mar 2023 -- Jun 2023}
+      {Indian Institute of Technology, Hyderabad}{Hyderabad, India}
+      \resumeItemListStart
+        \resumeItem{Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation.}
+        \resumeItem{Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Teaching Assistant, Machine Learning}{Jan 2023 -- Apr 2023}
+      {Sathyabama Institute of Science \& Technology}{Chennai, India}
+
+  \resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, MATLAB, R, SQL, Bash, LaTeX} \\
+     \textbf{Scientific ML}{: PyTorch, NumPy/SciPy, Operator Learning, Physics-Informed Neural Networks (PINNs)} \\
+     \textbf{Tools}{: Git, Docker, Linux, HPC job scripting, VS Code, Cursor}
+    }}
+ \end{itemize}
+
+%-----------READING GROUPS-----------
+\section{Reading Groups}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Scientific Machine Learning Reading Group}{2025 -- Present}
+      {University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
+      \resumeItemListStart
+        \resumeItem{Weekly seminar with rotating student presentations of research literature; topics include Computational Optimal Transport (Peyr\'e \& Cuturi), Equivariant Neural Networks, and One-Shot Learning.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+\end{document}

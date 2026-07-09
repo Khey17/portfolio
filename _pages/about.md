@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Research Software Engineer · University of Delaware
+subtitle: Research Associate · Scientific Machine Learning · University of Delaware
 
 profile:
   align: right
@@ -26,7 +26,7 @@ latest_posts:
   limit: 3
 ---
 
-I am a **Research Software Engineer** in the Department of Mathematical Sciences at the **University of Delaware**, working on scientific machine learning for partial differential equations (PDEs). My current research focuses on building hybrid solvers that combine neural networks with classical numerical methods.
+I am a **Research Associate** in the Department of Mathematical Sciences at the **University of Delaware**, working on scientific machine learning for partial differential equations (PDEs). My current research focuses on building hybrid solvers that combine neural networks with classical numerical methods.
 
 I am developing a learned **Hierarchical Poincaré–Steklov solver** for semilinear elliptic PDEs that achieves significant speedups over traditional solvers while maintaining controlled accuracy.
 

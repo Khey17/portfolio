@@ -10,6 +10,7 @@ _site
 .venv
 assets/libs/
 assets/rendercv/rendercv_output/*.typ
+assets/rendercv/rendercv_output/resume_build.*
 al-folio-upgrade-report.md
 node_modules/
 output/playwright/

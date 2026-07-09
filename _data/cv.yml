@@ -2,9 +2,11 @@
 
 cv:
   name: Karthikheyaa Kurra
-  headline: Research Software Engineer
+  headline: Research Associate · Scientific Machine Learning
   location: Newark, DE
   email: karth@udel.edu
+  phone: +1-267-299-9245
+  website: https://khey17.github.io/portfolio/
   social_networks:
     - network: LinkedIn
       username: karthikheyaa
@@ -12,21 +14,67 @@ cv:
       username: khey17
 
   sections:
-    summary:
-      - Research Software Engineer in the Department of Mathematical Sciences at the University of Delaware, working on scientific machine learning for partial differential equations (PDEs). My current research focuses on building hybrid solvers that combine neural networks with classical numerical methods.
+    education:
+      - institution: University of Delaware
+        area: Data Science
+        degree: M.S.
+        location: Newark, DE
+        start_date: 2024-08
+        end_date: 2026-05
+        highlights:
+          - "GPA 3.80/4.00. Coursework: Probability Theory & Applications, Mathematical Techniques for Data Science (Optimization), Applied Multivariate Statistics, Machine Learning, Algorithm Design & Analysis, Research Software Engineering"
+      - institution: Sathyabama Institute of Science & Technology
+        area: Computer Science & Engineering
+        degree: B.E.
+        location: Chennai, India
+        start_date: 2020-10
+        end_date: 2024-05
 
     experience:
-      - company: University of Delaware
-        position: Research Software Engineer
-        location: Department of Mathematical Sciences, Newark, DE
-        start_date: 2024-01
+      - company: University of Delaware — Department of Mathematical Sciences
+        position: Research Associate, Scientific Machine Learning
+        location: Newark, DE
+        start_date: 2025-06
         end_date: present
         highlights:
-          - Developing a learned Hierarchical Poincaré–Steklov solver for semilinear elliptic PDEs with significant speedups over traditional solvers while maintaining controlled accuracy.
-          - Building hybrid solvers that combine neural networks with classical numerical methods for scientific machine learning.
+          - "Developing hybrid classical and neural solvers for semilinear elliptic PDEs: learned surrogates that replace iterative Newton solves with a single forward pass, amortizing solution cost across problem instances (manuscript in preparation)."
+          - "Built the project's end-to-end research infrastructure: high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines."
+          - "Drove architecture and loss design through controlled ablation studies covering network normalization and physics-informed residual losses with adaptive loss balancing, alongside systematic wall-clock profiling of classical versus learned inference."
+          - "Maintain a regression-locked, unit-tested codebase with automated experiment reports that set weekly research direction with the PI."
+      - company: University of Delaware — Department of Computer & Information Sciences
+        position: Research Software Engineer, LLM Serving & Benchmarking
+        location: Newark, DE
+        start_date: 2026-06
+        end_date: present
+        highlights:
+          - "Member of a research software engineering team building an on-premise LLM assistant for University of Delaware students, faculty, and staff."
+          - "Benchmarking LLM inference and serving performance (throughput, latency, model selection) on NVIDIA DGX hardware to inform deployment decisions."
+      - company: Indian Institute of Technology, Hyderabad
+        position: Research Intern, Computer Vision
+        location: Hyderabad, India
+        start_date: 2023-03
+        end_date: 2023-06
+        highlights:
+          - "Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation."
+          - "Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab."
+      - company: Sathyabama Institute of Science & Technology
+        position: Teaching Assistant, Machine Learning
+        location: Chennai, India
+        start_date: 2023-01
+        end_date: 2023-04
 
-    research interests:
-      - label: Scientific Machine Learning
-        details: Operator Learning, Physics-Informed Neural Networks, Equivariant Neural Networks
-      - label: Additional Interests
-        details: Computer Vision, Computational Optimal Transport
+    skills:
+      - label: Languages
+        details: Python, MATLAB, R, SQL, Bash, LaTeX
+      - label: Scientific ML
+        details: PyTorch, NumPy/SciPy, Operator Learning, Physics-Informed Neural Networks (PINNs)
+      - label: Tools
+        details: Git, Docker, Linux, HPC job scripting, VS Code, Cursor
+
+    reading groups:
+      - name: Scientific Machine Learning Reading Group
+        location: University of Delaware (Advisor: Dr. Ke Chen)
+        start_date: 2025
+        end_date: present
+        highlights:
+          - "Weekly seminar with rotating student presentations of research literature; topics include Computational Optimal Transport (Peyré & Cuturi), Equivariant Neural Networks, and One-Shot Learning."

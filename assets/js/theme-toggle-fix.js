@@ -1,0 +1,1 @@
+!function(){function e(){"function"==typeof setThemeSetting&&"function"==typeof determineComputedTheme&&(toggleThemeSetting=function(){setThemeSetting("dark"===determineComputedTheme()?"light":"dark")})}"loading"===document.readyState?document.addEventListener("DOMContentLoaded",e):e()}();

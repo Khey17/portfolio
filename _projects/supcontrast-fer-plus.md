@@ -8,7 +8,7 @@ published: true
 github: https://github.com/Khey17/SupContrast
 ---
 
-This 2023 case study compares supervised contrastive learning with a standard cross entropy classifier on FER+.
+This case study compares supervised contrastive learning with a standard cross entropy classifier on FER+.
 
 The experiment looks at overall accuracy, macro F1, performance for each emotion class, and how batch size affects rare classes such as contempt and disgust.
 

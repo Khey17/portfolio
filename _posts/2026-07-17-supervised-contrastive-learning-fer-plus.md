@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Supervised Contrastive Learning on Imbalanced Facial Expressions"
-date: 2026-07-17 10:00:00-0400
+date: 2023-07-01 10:00:00-0400
 description: "A reproducible FER+ case study showing why SupCon can match overall accuracy yet fail badly on rare classes."
 tags: computer-vision deep-learning contrastive-learning
 categories: research

@@ -115,6 +115,16 @@ ul#tabs a {
   background-color: #ffffff;
 }
 
+#header .header-bar {
+  background: #ffffff;
+  background-color: #ffffff;
+}
+
+body > #header .header-bar {
+  width: 100%;
+  background: #ffffff;
+}
+
 .navbar {
   border: none;
 }
@@ -522,6 +532,18 @@ hr {
   -webkit-box-shadow: none;
   box-shadow: none;
   z-index: 10;
+}
+
+#clusters > a {
+  color: #ef5c00;
+  text-decoration: underline;
+  cursor: auto;
+}
+
+#clusters > a:hover {
+  color: #126dce;
+  text-decoration: underline;
+  cursor: auto;
 }
 
 mark,

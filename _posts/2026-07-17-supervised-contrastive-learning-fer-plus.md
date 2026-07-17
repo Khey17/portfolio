@@ -87,13 +87,13 @@ The rare-class result like `disgust` and `contempt` score exactly the same under
 
 ## The embeddings look better, but improvement is not justifiable
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 360px)); gap: 1rem; margin: 1.5rem 0;">
-  <figure style="margin: 0;">
-    <img src="{{ '/assets/img/blog/supcontrast/tsne_supcon_none.png' | relative_url }}" alt="t-SNE visualization of SupCon FER+ embeddings grouped into compact clusters">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.75rem; width: 100%; max-width: 100%; margin: 1.5rem 0; overflow: hidden;">
+  <figure style="min-width: 0; width: 100%; margin: 0;">
+    <img src="{{ '/assets/img/blog/supcontrast/tsne_supcon_none.png' | relative_url }}" alt="t-SNE visualization of SupCon FER+ embeddings grouped into compact clusters" style="display: block; width: 100%; max-width: 100%; height: auto;">
     <figcaption style="text-align: center;">SupCon embeddings</figcaption>
   </figure>
-  <figure style="margin: 0;">
-    <img src="{{ '/assets/img/blog/supcontrast/tsne_ce_none.png' | relative_url }}" alt="t-SNE visualization of cross-entropy FER+ embeddings with more dispersed clusters">
+  <figure style="min-width: 0; width: 100%; margin: 0;">
+    <img src="{{ '/assets/img/blog/supcontrast/tsne_ce_none.png' | relative_url }}" alt="t-SNE visualization of cross-entropy FER+ embeddings with more dispersed clusters" style="display: block; width: 100%; max-width: 100%; height: auto;">
     <figcaption style="text-align: center;">Cross-entropy embeddings</figcaption>
   </figure>
 </div>

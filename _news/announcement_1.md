@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Portfolio site is live — built with al-folio and deployed on GitHub Pages.
+Portfolio site is live and deployed on GitHub Pages.

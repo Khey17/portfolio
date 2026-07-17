@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "When Supervised Contrastive Learning Meets Imbalanced Facial Expressions"
+title: "Supervised Contrastive Learning on Imbalanced Facial Expressions"
 date: 2026-07-17 10:00:00-0400
 description: "A reproducible FER+ case study showing why SupCon can match overall accuracy yet fail badly on rare classes."
 tags: computer-vision deep-learning contrastive-learning
@@ -10,11 +10,11 @@ toc:
   sidebar: left
 ---
 
-Supervised Contrastive Learning (SupCon) produces remarkably structured representations on balanced object datasets. I wanted to know whether that advantage survives in a messier setting: low-resolution facial expressions with a severe long-tail distribution.
+Supervised Contrastive Learning (SupCon) produces remarkably structured representations on balanced object datasets (This case study was motivated from Supervised Contrastive Learning [paper](https://arxiv.org/abs/2004.11362)). I wanted to know whether that advantage survives in a messier setting: low-resolution facial expressions with a severe long-tail distribution.
 
-I tested SupCon against a conventional cross-entropy classifier on **FER+**, using the same ResNet18 backbone for every experiment. The result is a useful cautionary tale: SupCon reached the best overall accuracy and produced cleaner embeddings, yet performed much worse on the rarest classes. The failure was not hidden in the model architecture—it came from how contrastive learning depends on batch composition.
+I tested SupCon against a conventional cross-entropy classifier on **FER+**, using the same ResNet18 backbone for every experiment. The result is a useful cautionary tale: SupCon reached the best overall accuracy and produced cleaner embeddings, yet performed much worse on the rarest classes. The failure was not hidden in the model architecture. It came from how contrastive learning depends on batch composition.
 
-The complete implementation, checkpoints, metrics, and reproduction scripts are available in the [SupContrast repository](https://github.com/Khey17/SupContrast).
+The complete implementation, checkpoints, metrics, and reproduction scripts (the parent repository) are available in the [SupContrast](https://github.com/Khey17/SupContrast).
 
 ## The problem
 
@@ -31,7 +31,7 @@ SupCon's headline results come from balanced datasets such as CIFAR and ImageNet
 
 Cross entropy evaluates each image against a fixed set of class weights. Every image therefore contributes a gradient regardless of which other samples happen to be in its batch.
 
-SupCon works differently. For each anchor, it needs another sample from the same class to form a positive pair, while all other samples act as negatives. If a class appears fewer than twice in a batch, it supplies no positive pair—and therefore no useful SupCon learning signal—during that step.
+SupCon works differently. For each anchor, it needs another sample from the same class to form a positive pair, while all other samples act as negatives. If a class appears fewer than twice in a batch, it supplies no positive pair and therefore no useful SupCon learning signal—during that step.
 
 For anchor \(i\), let \(P(i)\) be the same-class samples in the batch and \(A(i)\) all other samples. The supervised contrastive loss is
 
@@ -68,7 +68,7 @@ Using one backbone and a shared evaluation pipeline keeps the comparison focused
 | SupCon + linear probe | From scratch   |         78.5% |     55.8% |
 | SupCon + linear probe | MS-Celeb faces |     **80.7%** |     59.0% |
 
-SupCon with face-pretrained initialization achieved the highest accuracy, 80.7%. If accuracy were the only metric, it would appear to win. Macro F1 tells a different story: both SupCon configurations trail their cross-entropy counterparts because the rare classes barely benefit.
+SupCon with face-pretrained initialization achieved the highest accuracy, 80.7%. If accuracy were the only metric, it would appear to win, but Macro F1 gives us to look at it from another lens both SupCon configurations trail their cross-entropy counterparts because the rare classes barely benefit.
 
 ### Per-class accuracy
 
@@ -83,11 +83,11 @@ SupCon with face-pretrained initialization achieved the highest accuracy, 80.7%.
 | Disgust   |           191 |       34.8 |          47.8 |            8.7 |               8.7 |
 | Contempt  |           165 |       29.6 |          29.6 |            7.4 |               7.4 |
 
-The rare-class result is striking. Disgust and contempt score exactly the same under SupCon whether the encoder starts from random weights or face-pretrained weights. If representation quality were the primary bottleneck, better initialization should have moved those numbers. It did not.
+The rare-class result like `disgust` and `contempt` score exactly the same under SupCon whether the encoder starts from random weights or face-pretrained weights. If representation quality were the primary bottleneck, better initialization should have moved those numbers. It did not.
 
-## The embeddings look better—but that is not the whole story
+## The embeddings look better, but improvement is not justifiable
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 360px)); gap: 1rem; margin: 1.5rem 0;">
   <figure style="margin: 0;">
     <img src="{{ '/assets/img/blog/supcontrast/tsne_supcon_none.png' | relative_url }}" alt="t-SNE visualization of SupCon FER+ embeddings grouped into compact clusters">
     <figcaption style="text-align: center;">SupCon embeddings</figcaption>
@@ -103,6 +103,8 @@ The t-SNE plots show SupCon doing what it was designed to do: samples from the s
 That geometric improvement is real, but it does not guarantee balanced classification. The majority classes dominate both the embedding visualization and aggregate accuracy, while the rare-class collapse is visible only when performance is broken down by class.
 
 ## Why batch size explains the failure
+
+The original implementation was actually done on large batch sizes (contains thousands of samples) because the idea of contrastive learning is that it pulls all the similar images together while pushing dissimilar images apart so on smaller batches, only handful of images are seen by the loss function making it harder for the model to generalize, to simply put the model lacks perspective.
 
 Consider contempt, which represents \(p = 165 / 28{,}389 \approx 0.0058\) of the training set. If samples are drawn randomly, the number of contempt examples in a batch can be approximated by a Poisson random variable with mean
 

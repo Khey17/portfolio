@@ -2,6 +2,7 @@
 layout: page
 title: Supervised Contrastive Learning on FER+
 description: Comparing SupCon and cross entropy on imbalanced facial expression recognition.
+img: assets/img/projects/supcontrast-cover.png
 importance: 2
 category: research
 published: true

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Notes on the Sinkhorn Algorithm"
-date: 2026-07-18 10:00:00-0400
+date: 2026-07-09 10:00:00-0400
 description: "Working notes and demos on entropic optimal transport and Sinkhorn, from a Computational OT reading seminar."
 tags: optimal-transport sinkhorn
 categories: research

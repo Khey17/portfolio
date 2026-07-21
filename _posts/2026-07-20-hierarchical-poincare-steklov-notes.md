@@ -12,9 +12,7 @@ toc:
   sidebar: left
 ---
 
-These are my working notes on the Hierarchical Poincaré–Steklov (HPS) method for linear elliptic PDEs. I learned the method from Chapters 25 and 26 of Per-Gunnar Martinsson's textbook ([Ch. 25](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch25), [Ch. 26](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch26)).
-
-The BVP I care about is
+Consider the BVP as shown:
 
 $$
 \begin{cases}

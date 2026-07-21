@@ -49,14 +49,6 @@ cv:
         highlights:
           - "Built a hierarchical Poincaré–Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree."
           - "Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy."
-      - company: Indian Institute of Technology, Hyderabad
-        position: Research Intern, Computer Vision
-        location: Hyderabad, India
-        start_date: 2023-03
-        end_date: 2023-06
-        highlights:
-          - "Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation."
-          - "Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab."
       - company: Sathyabama Institute of Science & Technology
         position: Teaching Assistant, Machine Learning
         location: Chennai, India
@@ -65,6 +57,14 @@ cv:
         highlights:
           - "Graded assignments, midterms and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course."
           - "Led review sessions and tutorials on mathematics for machine learning, covering lecture material on matrix algebra and multivariable calculus."
+      - company: Indian Institute of Technology, Hyderabad
+        position: Research Intern, Computer Vision
+        location: Hyderabad, India
+        start_date: 2023-03
+        end_date: 2023-06
+        highlights:
+          - "Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation."
+          - "Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab."
       - company: The University of Texas at Dallas
         position: Summer Intern
         location: Dallas, TX

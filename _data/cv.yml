@@ -38,33 +38,17 @@ cv:
         end_date: present
         highlights:
           - "Writing a paper on hybrid PDE solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE in a non-iterative manner through learned surrogates and by leveraging hierarchical structure."
-          - "Simulated high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines."
-          - "Investigated architecture through ablation studies covering network depth, normalization, and physics-informed residual losses with adaptive loss balancing, alongside computing the complexity and wall-clock time of inference pipeline."
-          - "Built and Maintained a codebase by writing good code, unit tests, smoke tests and made weekly reports to track research progress."
-      - company: University of Delaware — Department of Computer & Information Sciences
-        position: Research Software Engineer, LLM Serving & Benchmarking
-        location: Newark, DE
-        start_date: 2026-06
-        end_date: present
-        highlights:
-          - "Member of a research software engineering team building an on-premise LLM assistant for University of Delaware students, faculty, and staff."
-          - "Benchmarking LLM inference and serving performance (throughput, latency, model selection) on NVIDIA DGX hardware to inform deployment decisions."
+          - "Own end-to-end research infrastructure: high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines."
+          - "Drove architecture and loss design through controlled ablation studies covering network normalization and physics-informed residual losses with adaptive loss balancing, alongside systematic wall-clock profiling of classical versus learned inference."
+          - "Maintain a regression-locked, unit-tested codebase with automated experiment reports that set weekly research direction with the PI."
       - company: University of Delaware — Department of Mathematical Sciences
-        position: Research Assistant, Scientific Computing
+        position: Research Assistant, Scientific Machine Learning
         location: Newark, DE
         start_date: 2025-06
         end_date: 2026-06
         highlights:
-          - "Built a hierarchical Poincaré–Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree."
-          - "Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy."
-      - company: Sathyabama Institute of Science & Technology
-        position: Teaching Assistant, Machine Learning
-        location: Chennai, India
-        start_date: 2024-01
-        end_date: 2024-04
-        highlights:
-          - "Graded assignments, midterms and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course."
-          - "Led review sessions and tutorials on mathematics for machine learning, covering lecture material on matrix algebra and multivariable calculus."
+          - "Joined Dr. Ke Chen's group to build neural surrogates for nonlinear PDE solvers, replacing per-instance Newton iteration with amortized single-pass inference on new problem instances."
+          - "Established spectral ground-truth generation, dataset validation, and reproducible PyTorch experiment pipelines that underpin the project's training and evaluation workflow."
       - company: Indian Institute of Technology, Hyderabad
         position: Research Intern, Computer Vision
         location: Hyderabad, India
@@ -73,6 +57,14 @@ cv:
         highlights:
           - "Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation."
           - "Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab."
+      - company: Sathyabama Institute of Science & Technology
+        position: Teaching Assistant, Machine Learning
+        location: Chennai, India
+        start_date: 2023-01
+        end_date: 2023-04
+        highlights:
+          - "Graded assignments and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course."
+          - "Led review sessions on mathematics for machine learning, covering matrix algebra and multivariable calculus."
       - company: The University of Texas at Dallas
         position: Summer Intern
         location: Dallas, TX

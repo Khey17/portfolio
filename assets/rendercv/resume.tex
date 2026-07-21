@@ -28,8 +28,8 @@
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
-\addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\topmargin}{-.55in}
+\addtolength{\textheight}{1.15in}
 
 \urlstyle{same}
 
@@ -39,8 +39,8 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-4pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-6pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-6pt}]
 
 % Ensure that generated pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -49,26 +49,26 @@
 % Custom commands
 \newcommand{\resumeItem}[1]{
   \item\small{
-    {#1 \vspace{-2pt}}
+    {#1 \vspace{-3pt}}
   }
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \vspace{-3pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-8pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, itemsep=1pt, parsep=0pt, topsep=0pt, partopsep=0pt]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=1pt, parsep=0pt, topsep=1pt, partopsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-6pt}}
 
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -91,7 +91,7 @@
       {University of Delaware}{Newark, DE}
       {M.S.\ Data Science, GPA 3.80/4.00}{Aug 2024 -- May 2026}
       \resumeItemListStart
-        \resumeItem{\textbf{Coursework:} Probability Theory \& Applications, Mathematical Techniques for Data Science (Optimization), Applied Multivariate Statistics, Machine Learning, Algorithm Design \& Analysis, Research Software Engineering}
+        \resumeItem{\textbf{Coursework:} Probability Theory, Mathematical Techniques for Data Science (Optimization), Applied Multivariate Statistics, Machine Learning, Algorithm Design \& Analysis, Research Software Engineering}
       \resumeItemListEnd
     \resumeSubheading
       {Sathyabama Institute of Science \& Technology}{Chennai, India}
@@ -106,56 +106,56 @@
       {Research Associate, Scientific Machine Learning}{Jun 2026 -- Present}
       {Department of Mathematical Sciences, University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
       \resumeItemListStart
-        \resumeItem{Writing a paper on hybrid PDE solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE in a non-iterative manner through learned surrogates and by leveraging hierarchical structure.}
-        \resumeItem{Simulated high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines.}
-        \resumeItem{Investigated architecture through ablation studies covering network depth, normalization, and physics-informed residual losses with adaptive loss balancing, alongside computing the complexity and wall-clock time of inference pipeline.}
-        \resumeItem{Built and Maintained a codebase by writing good code, unit tests, smoke tests and made weekly reports to track research progress.}
+        \resumeItem{Writing a paper on hybrid PDE solvers that combine classical methods and neural networks to solve nonlinear elliptic PDEs non-iteratively via learned surrogates and hierarchical structure.}
+        \resumeItem{Built high-precision ground truth with Chebyshev spectral discretizations and Newton iteration, plus dataset validation and reproducible PyTorch training/evaluation pipelines.}
+        \resumeItem{Ran ablation studies on network depth, normalization, and physics-informed residual losses with adaptive loss balancing; profiled inference complexity and wall-clock time.}
+        \resumeItem{Maintained the research codebase with unit/smoke tests and weekly progress reports.}
       \resumeItemListEnd
 
       \resumeSubheading
       {Research Software Engineer, LLM Serving \& Benchmarking}{Jun 2026 -- Present}
       {Department of Computer \& Information Sciences, UD \, (Advisor: Dr.\ Sunita Chandrasekaran)}{Newark, DE}
       \resumeItemListStart
-        \resumeItem{Member of a research software engineering team building an on-premise LLM assistant for University of Delaware students, faculty, and staff.}
-        \resumeItem{Benchmarking LLM inference and serving performance (throughput, latency, model selection) on NVIDIA DGX hardware to inform deployment decisions.}
+        \resumeItem{Part of a team building an on-premise LLM assistant for UD students, faculty, and staff.}
+        \resumeItem{Benchmarking LLM inference/serving (throughput, latency, model selection) on NVIDIA DGX hardware.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Research Assistant, Scientific Computing}{Jun 2025 -- Jun 2026}
       {Department of Mathematical Sciences, University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
       \resumeItemListStart
-        \resumeItem{Built a hierarchical Poincar\'e--Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree.}
-        \resumeItem{Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy.}
+        \resumeItem{Built a hierarchical Poincar\'e--Steklov (HPS) solver for linear elliptic PDEs: Chebyshev leaf grids, Dirichlet-to-Neumann maps, and Schur-complement merges up the tree.}
+        \resumeItem{Verified on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes on leaf operators, merges, and hierarchy scaling.}
       \resumeItemListEnd
 
       \resumeSubheading
       {Teaching Assistant, Machine Learning}{Jan 2024 -- Apr 2024}
       {Sathyabama Institute of Science \& Technology}{Chennai, India}
       \resumeItemListStart
-        \resumeItem{Graded assignments, midterms and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course.}
-        \resumeItem{Led review sessions and tutorials on mathematics for machine learning, covering lecture material on matrix algebra and multivariable calculus.}
+        \resumeItem{Graded assignments, midterms, and homework; prepared lecture slides and notes for the undergraduate ML course.}
+        \resumeItem{Led review sessions on mathematics for machine learning (matrix algebra and multivariable calculus).}
       \resumeItemListEnd
 
     \resumeSubheading
       {Research Intern, Computer Vision}{Mar 2023 -- Jun 2023}
       {Indian Institute of Technology, Hyderabad}{Hyderabad, India}
       \resumeItemListStart
-        \resumeItem{Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation.}
-        \resumeItem{Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab.}
+        \resumeItem{Applied supervised contrastive learning (Khosla et al., 2020) to facial expression recognition in PyTorch, comparing SupCon against a cross-entropy baseline.}
+        \resumeItem{Analyzed embeddings with t-SNE and delivered a reproducible codebase to the lab.}
       \resumeItemListEnd
 
     \resumeSubheading
       {Summer Intern}{Jun 2022 -- Jul 2022}
       {The University of Texas at Dallas}{Dallas, TX}
       \resumeItemListStart
-        \resumeItem{Intensive summer program in machine learning and deep reinforcement learning: lectures, labs, and hands-on model building from first principles.}
+        \resumeItem{Summer program in machine learning and deep reinforcement learning: lectures, labs, and model building from first principles.}
       \resumeItemListEnd
 
   \resumeSubHeadingListEnd
 
 %-----------SKILLS-----------
 \section{Technical Skills}
- \begin{itemize}[leftmargin=0.15in, label={}]
+ \begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, parsep=0pt, topsep=0pt]
     \small{\item{
      \textbf{Languages}{: Python, MATLAB, R, SQL, Bash, LaTeX} \\
      \textbf{Scientific ML}{: PyTorch, NumPy/SciPy, Operator Learning, Physics-Informed Neural Networks (PINNs)} \\
@@ -165,13 +165,10 @@
 
 %-----------READING GROUPS-----------
 \section{Reading Groups}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Scientific Machine Learning Reading Group}{2025 -- Present}
-      {University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
-      \resumeItemListStart
-        \resumeItem{Weekly seminar with rotating student presentations of research literature; topics include Computational Optimal Transport (Peyr\'e \& Cuturi), Equivariant Neural Networks, and One-Shot Learning.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
+ \begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt, parsep=0pt, topsep=0pt]
+    \small{\item{
+     \textbf{Scientific Machine Learning Reading Group}, University of Delaware (Advisor: Dr.\ Ke Chen), 2025--Present. Weekly student presentations; topics include Computational Optimal Transport (Peyr\'e \& Cuturi), Equivariant Neural Networks, and One-Shot Learning.
+    }}
+ \end{itemize}
 
 \end{document}

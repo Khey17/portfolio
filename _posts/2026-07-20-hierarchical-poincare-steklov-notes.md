@@ -388,6 +388,6 @@ The gallery also has Helmholtz and variable-coefficient runs. The three plots ab
 
 ## References
 
-* Per-Gunnar Martinsson, *Fast Direct Solvers for Elliptic PDEs*, SIAM, 2019.
+- Per-Gunnar Martinsson, _Fast Direct Solvers for Elliptic PDEs_, SIAM, 2019.
   - [Chapter 25](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch25)
   - [Chapter 26](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch26)

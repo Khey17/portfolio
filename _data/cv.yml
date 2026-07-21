@@ -38,17 +38,17 @@ cv:
         end_date: present
         highlights:
           - "Writing a paper on hybrid PDE solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE in a non-iterative manner through learned surrogates and by leveraging hierarchical structure."
-          - "Own end-to-end research infrastructure: high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines."
-          - "Drove architecture and loss design through controlled ablation studies covering network normalization and physics-informed residual losses with adaptive loss balancing, alongside systematic wall-clock profiling of classical versus learned inference."
-          - "Maintain a regression-locked, unit-tested codebase with automated experiment reports that set weekly research direction with the PI."
+          - "Simulated high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines."
+          - "Investigated architecture through ablation studies covering network depth, normalization, and physics-informed residual losses with adaptive loss balancing, alongside computing the complexity and wall-clock time of inference pipeline."
+          - "Built and Maintained a codebase by writing good code, unit tests, smoke tests and made weekly reports to track research progress."
       - company: University of Delaware — Department of Mathematical Sciences
-        position: Research Assistant, Scientific Machine Learning
+        position: Research Assistant, Scientific Computing
         location: Newark, DE
         start_date: 2025-06
         end_date: 2026-06
         highlights:
-          - "Joined Dr. Ke Chen's group to build neural surrogates for nonlinear PDE solvers, replacing per-instance Newton iteration with amortized single-pass inference on new problem instances."
-          - "Established spectral ground-truth generation, dataset validation, and reproducible PyTorch experiment pipelines that underpin the project's training and evaluation workflow."
+          - "Built a hierarchical Poincaré–Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree."
+          - "Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy."
       - company: Indian Institute of Technology, Hyderabad
         position: Research Intern, Computer Vision
         location: Hyderabad, India

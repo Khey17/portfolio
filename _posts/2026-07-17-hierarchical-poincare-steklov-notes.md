@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding Hierarchical Poincaré–Steklov Method"
-date: 2026-07-20 20:00:00-0400
+date: 2026-07-17 12:00:00-0400
 description: "HPS for linear elliptic PDEs: leaf operators, merging boxes, and how the tree scales."
 tags: scientific-computing pde hierarchical-methods
 categories: research

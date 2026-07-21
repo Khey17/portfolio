@@ -60,11 +60,11 @@ cv:
       - company: Sathyabama Institute of Science & Technology
         position: Teaching Assistant, Machine Learning
         location: Chennai, India
-        start_date: 2023-01
-        end_date: 2023-04
+        start_date: 2024-01
+        end_date: 2024-04
         highlights:
-          - "Graded assignments and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course."
-          - "Led review sessions on mathematics for machine learning, covering matrix algebra and multivariable calculus."
+          - "Graded assignments, midterms and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course."
+          - "Led review sessions and tutorials on mathematics for machine learning, covering lecture material on matrix algebra and multivariable calculus."
       - company: The University of Texas at Dallas
         position: Summer Intern
         location: Dallas, TX

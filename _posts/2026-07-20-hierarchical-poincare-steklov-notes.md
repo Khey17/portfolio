@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Notes on the Hierarchical Poincaré–Steklov Method"
+title: "Understanding Hierarchical Poincaré–Steklov Method"
 date: 2026-07-20 20:00:00-0400
-description: "Working notes on HPS for linear elliptic PDEs: leaf operators, merging boxes, and how the tree scales."
+description: "HPS for linear elliptic PDEs: leaf operators, merging boxes, and how the tree scales."
 tags: scientific-computing pde hierarchical-methods
 categories: research
 published: true
@@ -12,7 +12,7 @@ toc:
   sidebar: left
 ---
 
-These are my working notes on the Hierarchical Poincaré–Steklov (HPS) method for linear elliptic PDEs. The implementation follows Chapters 25 and 26 of Per-Gunnar Martinsson's [textbook](https://epubs.siam.org/doi/book/10.1137/1.9781611976045). The code lives in a private repo for now, so this post is the public version of the notes.
+These are my working notes on the Hierarchical Poincaré–Steklov (HPS) method for linear elliptic PDEs. I learned the method from Chapters 25 and 26 of Per-Gunnar Martinsson's textbook ([Ch. 25](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch25), [Ch. 26](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch26)).
 
 The BVP I care about is
 
@@ -23,22 +23,22 @@ u(x) = f(x), & x \in \Gamma.
 \end{cases}
 $$
 
-Here \(\Omega\) is the domain and \(\Gamma = \partial\Omega\) is its boundary. HPS solves this by chopping \(\Omega\) into leaf boxes, building local Dirichlet to Neumann maps, and then merging those maps up a tree with Schur complements.
+Here $\Omega$ is the domain and $\Gamma = \partial\Omega$ is its boundary. HPS solves this by chopping $\Omega$ into leaf boxes, building local Dirichlet to Neumann maps, and then merging those maps up a tree with Schur complements.
 
 ## Trivial case
 
-Start with the smallest picture that still has the whole idea in it. Break the domain into panels and put a \(p \times p\) Chebyshev mesh (tensor product) on each panel. Take \(n_1 = n_2 = 1\), so there are just two leaf boxes: \(\alpha\) on the left and \(\beta\) on the right. The outer boundary \(\Gamma\) sits on the outer edges of the pair. The shared vertical cut between \(\alpha\) and \(\beta\) is the interface.
+Start with the smallest picture that still has the whole idea in it. Break the domain into panels and put a $p \times p$ Chebyshev mesh (tensor product) on each panel. Take $n_1 = n_2 = 1$, so there are just two leaf boxes: $\alpha$ on the left and $\beta$ on the right. The outer boundary $\Gamma$ sits on the outer edges of the pair. The shared vertical cut between $\alpha$ and $\beta$ is the interface.
 
 <figure style="margin: 1.5rem 0;">
-  <img src="{{ '/assets/img/blog/hps/trivial_case.png' | relative_url }}" alt="Two leaf boxes alpha and beta sharing a red interface, with blue outer boundary Gamma" style="display: block; width: 100%; max-width: 100%; height: auto;">
-  <figcaption style="text-align: center;">Trivial case: two leaves with a \(p\times p\) Chebyshev grid on each panel, shared interface (red), outer boundary \(\Gamma\) (blue).</figcaption>
+  <img src="{{ '/assets/img/blog/hps/trivial_case.png' | relative_url }}" alt="Two leaf boxes alpha and beta with Chebyshev grids, shared red interface, and blue outer boundary Gamma" style="display: block; width: 100%; max-width: 100%; height: auto;">
+  <figcaption style="text-align: center;">Trivial case: two leaves with a $p\times p$ Chebyshev grid on each panel, shared interface (red), outer boundary $\Gamma$ (blue).</figcaption>
 </figure>
 
-For any box \(\tau\), the vector \(I_b^\tau\) lists all indices on \(\partial\Omega_\tau\). For a leaf box \(\tau\), the vector \(I_i^\tau\) lists all indices strictly interior to \(\Omega_\tau\). Write
+For any box $\tau$, the vector $I_b^\tau$ lists all indices on $\partial\Omega_\tau$. For a leaf box $\tau$, the vector $I_i^\tau$ lists all indices strictly interior to $\Omega_\tau$. Write
 
 $$
 u_i^\tau = u(I_i^\tau)
-\quad\text{(interior potential of leaf \(\tau\))}
+\quad\text{(interior potential of leaf $\tau$)}
 $$
 
 $$
@@ -54,7 +54,7 @@ $$
 u_i^\tau = S^\tau \, u_b^\tau.
 $$
 
-So \(S^\tau\) is the solution operator:
+So $S^\tau$ is the solution operator:
 
 $$
 S^\tau : u_b^\tau \mapsto u_i^\tau.
@@ -62,7 +62,7 @@ $$
 
 ## Flux / DtN operator
 
-Along with the potential we also map flux. DtN means Dirichlet to Neumann. The matrix \(T^\tau\) sends boundary data \(u_b^\tau\) to a vector \(v^\tau\) of boundary fluxes:
+Along with the potential we also map flux. DtN means Dirichlet to Neumann. The matrix $T^\tau$ sends boundary data $u_b^\tau$ to a vector $v^\tau$ of boundary fluxes:
 
 $$
 v^\tau = T^\tau \, u_b^\tau.
@@ -102,7 +102,7 @@ $$
 S^\tau = - A_{i,i}^{-1} A_{i,b}.
 $$
 
-Boundary fluxes come from the potentials \((u_b, u_i)\) through spectral differentiation. Let \(N\) be the matrix that maps local grid values to the four side fluxes. Then
+Boundary fluxes come from the potentials $(u_b, u_i)$ through spectral differentiation. Let $N$ be the matrix that maps local grid values to the four side fluxes. Then
 
 $$
 v^\tau
@@ -113,7 +113,7 @@ u_i
 \end{bmatrix}.
 $$
 
-Substitute \(u_i = S^\tau u_b\):
+Substitute $u_i = S^\tau u_b$:
 
 $$
 v^\tau
@@ -132,35 +132,35 @@ S^\tau
 \end{bmatrix}.
 $$
 
-On a \(p \times p\) grid, \(N\) is roughly size \(4(p-2) \times p^2\) after dropping corners. As \(p\) grows, building \(T\) and \(S\) gets more expensive, which is expected.
+On a $p \times p$ grid, $N$ is roughly size $4(p-2) \times p^2$ after dropping corners. As $p$ grows, building $T$ and $S$ gets more expensive, which is expected.
 
 ## Merging boxes (leaves)
 
-Now merge two leaves into a parent. Let \(\Omega_\alpha\) be the left child and \(\Omega_\beta\) the right child, with
+Now merge two leaves into a parent. Let $\Omega_\alpha$ be the left child and $\Omega_\beta$ the right child, with
 
 $$
 \Omega_\tau = \Omega_\alpha \cup \Omega_\beta.
 $$
 
-Partition the points on \(\partial\Omega_\alpha\) and \(\partial\Omega_\beta\) into three sets:
+Partition the points on $\partial\Omega_\alpha$ and $\partial\Omega_\beta$ into three sets:
 
-- \(J_1\): boundary indices of \(\Omega_\alpha\) that are not on \(\Omega_\beta\) (outer edge of \(\alpha\))
-- \(J_2\): boundary indices of \(\Omega_\beta\) that are not on \(\Omega_\alpha\) (outer edge of \(\beta\))
-- \(J_3\): boundary indices of both \(\Omega_\alpha\) and \(\Omega_\beta\) that are **not** on \(\partial\Omega_\tau\) (the shared interface)
+- $J_1$: boundary indices of $\Omega_\alpha$ that are not on $\Omega_\beta$ (outer edge of $\alpha$)
+- $J_2$: boundary indices of $\Omega_\beta$ that are not on $\Omega_\alpha$ (outer edge of $\beta$)
+- $J_3$: boundary indices of both $\Omega_\alpha$ and $\Omega_\beta$ that are **not** on $\partial\Omega_\tau$ (the shared interface)
 
 <figure style="margin: 1.5rem 0;">
   <img src="{{ '/assets/img/blog/hps/merging_boxes.png' | relative_url }}" alt="Two boxes Omega alpha and Omega beta with outer boundaries J1 and J2 and shared red interface J3" style="display: block; width: 100%; max-width: 100%; height: auto;">
-  <figcaption style="text-align: center;">Merging leaves: outer edges \(J_1\), \(J_2\), and shared interface \(J_3\).</figcaption>
+  <figcaption style="text-align: center;">Merging leaves: outer edges $J_1$, $J_2$, and shared interface $J_3$.</figcaption>
 </figure>
 
-HPS says the values on \(J_3\) have to agree. Two conditions:
+HPS says the values on $J_3$ have to agree. Two conditions:
 
-1. Continuity of the solution: \(u\) on the interface is the same from both sides (one shared \(u_3\)).
-2. Net flux at the interface is zero: the flux \(v_3\) from \(\alpha\) matches the flux \(v_3\) from \(\beta\).
+1. Continuity of the solution: $u$ on the interface is the same from both sides (one shared $u_3$).
+2. Net flux at the interface is zero: the flux $v_3$ from $\alpha$ matches the flux $v_3$ from $\beta$.
 
 ### Partition the child DtN maps
 
-For \(\Omega_\alpha\):
+For $\Omega_\alpha$:
 
 $$
 \begin{bmatrix}
@@ -178,7 +178,7 @@ u_3
 \end{bmatrix}.
 $$
 
-For \(\Omega_\beta\):
+For $\Omega_\beta$:
 
 $$
 \begin{bmatrix}
@@ -196,9 +196,9 @@ u_3
 \end{bmatrix}.
 $$
 
-### Solve for the interface potential \(u_3\)
+### Solve for the interface potential $u_3$
 
-Write the two expressions for \(v_3\):
+Write the two expressions for $v_3$:
 
 $$
 v_3 = T^\alpha_{31} u_1 + T^\alpha_{33} u_3,
@@ -213,7 +213,7 @@ T^\alpha_{31} u_1 + T^\alpha_{33} u_3
 = T^\beta_{32} u_2 + T^\beta_{33} u_3.
 $$
 
-Move every term with \(u_3\) to the left:
+Move every term with $u_3$ to the left:
 
 $$
 \bigl( T^\alpha_{33} - T^\beta_{33} \bigr) u_3
@@ -245,11 +245,11 @@ S^\tau
 \end{bmatrix}.
 $$
 
-So \(S^\tau\) maps the outer potentials \((u_1, u_2)\) to the interface potential \(u_3\).
+So $S^\tau$ maps the outer potentials $(u_1, u_2)$ to the interface potential $u_3$.
 
-### Parent DtN \(T^\tau\)
+### Parent DtN $T^\tau$
 
-Plug that expression for \(u_3\) back into the equations for \(v_1\) and \(v_2\), then stack:
+Plug that expression for $u_3$ back into the equations for $v_1$ and $v_2$, then stack:
 
 $$
 \begin{bmatrix}
@@ -280,7 +280,7 @@ T^\beta_{23}
 S^\tau.
 $$
 
-Writing \(S^\tau\) out fully,
+Writing $S^\tau$ out fully,
 
 $$
 T^\tau
@@ -300,7 +300,7 @@ T^\beta_{23}
 \end{bmatrix}.
 $$
 
-We eliminated \(u_3\) and factorized the interface block. That merge is a Schur complement. After the leaves are solved, parent operators at every level are built the same way: continuity plus flux matching. That was the trivial case.
+We eliminated $u_3$ and factorized the interface block. That merge is a Schur complement. After the leaves are solved, parent operators at every level are built the same way: continuity plus flux matching. That was the trivial case.
 
 ## Deeper tree
 
@@ -311,32 +311,85 @@ Scale the same idea past one parent and two children. Imagine 4 leaves, then 8, 
   <figcaption style="text-align: center;">How the partition looks when you keep splitting: white, then red, then orange/green levels.</figcaption>
 </figure>
 
-On a \([0,2]\times[0,2]\) box, leaf size \([0.25, 0.5]\) gives an \(8\times 4\) panel grid (32 leaves). Leaf size \([0.25, 0.25]\) gives \(8\times 8\) (64 leaves). Same merge rule, just more levels.
+On a $[0,2]\times[0,2]$ box, leaf size $[0.25, 0.5]$ gives an $8\times 4$ panel grid (32 leaves). Leaf size $[0.25, 0.25]$ gives $8\times 8$ (64 leaves). Same merge rule, just more levels.
 
 ## What a solved example looks like
 
-Here are a few verified runs from the example gallery. Each figure is exact solution, numerical solution, and pointwise error.
+The figures below come from the verified example gallery. In every case the workflow is the same: build the HPS tree, put Dirichlet data from a known exact field on the outer boundary $\Gamma$, solve, then plot exact solution, numerical solution, and pointwise error side by side.
 
-<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; width: 100%; max-width: 100%; margin: 1.5rem 0;">
-  <figure style="min-width: 0; margin: 0;">
-    <img src="{{ '/assets/img/blog/hps/2d_homogeneous_flag1.png' | relative_url }}" alt="2D homogeneous HPS solution triptych with max absolute error about 8.5e-12" style="display: block; width: 100%; max-width: 100%; height: auto;">
-    <figcaption style="text-align: center;">2D homogeneous example. Max absolute error on the order of \(10^{-12}\).</figcaption>
-  </figure>
-  <figure style="min-width: 0; margin: 0;">
-    <img src="{{ '/assets/img/blog/hps/2d_body_flag1.png' | relative_url }}" alt="2D body load HPS solution triptych" style="display: block; width: 100%; max-width: 100%; height: auto;">
-    <figcaption style="text-align: center;">2D body load example from the same gallery.</figcaption>
-  </figure>
-  <figure style="min-width: 0; margin: 0;">
-    <img src="{{ '/assets/img/blog/hps/1d_homogeneous_flag1.png' | relative_url }}" alt="1D homogeneous HPS solution and error" style="display: block; width: 100%; max-width: 100%; height: auto;">
-    <figcaption style="text-align: center;">1D homogeneous check, same leaf and merge idea in one dimension.</figcaption>
-  </figure>
-</div>
+### 2D Laplace, homogeneous
 
-## What I take from this
+PDE and boundary condition:
 
-1. **Leaves own the PDE.** On each panel you build \(S^\tau\) and \(T^\tau\) from the local spectral discretization.
-2. **Parents only talk about boundaries.** Merging never revisits interiors. Continuity of \(u\) and matching of flux on \(J_3\) are enough.
-3. **The merge is a Schur complement.** That block formula for \(T^\tau\) is the whole hierarchical step.
+$$
+\begin{cases}
+-\Delta u = 0 & \text{in } \Omega, \\
+u = g & \text{on } \Gamma,
+\end{cases}
+\qquad
+g = \cos(2x_1)\, e^{2x_2}\Big|_{\Gamma}.
+$$
+
+The exact field is $u(x_1,x_2) = \cos(2x_1)\, e^{2x_2}$, which is harmonic, so the body load is zero. Dirichlet data on $\Gamma$ is just the restriction of that field. Discretization: Chebyshev order $p = 11$ on a $4\times 4$ panel grid (a downsized version of the full $64\times 64$ run for a quick check). Max absolute error is on the order of $10^{-12}$.
+
+<figure style="margin: 1.5rem 0;">
+  <img src="{{ '/assets/img/blog/hps/2d_homogeneous_flag1.png' | relative_url }}" alt="2D homogeneous Laplace: exact, numerical, and error surfaces" style="display: block; width: 100%; max-width: 100%; height: auto;">
+  <figcaption style="text-align: center;">Homogeneous Laplace. Left to right: $u_{\mathrm{exact}}$, $u_{\mathrm{num}}$, pointwise error.</figcaption>
+</figure>
+
+### 2D Laplace with body load
+
+Same operator $-\Delta$, but now with a manufactured forcing:
+
+$$
+\begin{cases}
+-\Delta u = f & \text{in } \Omega, \\
+u = g & \text{on } \Gamma,
+\end{cases}
+\qquad
+u(x_1,x_2) = x_1\sin(x_1+x_2),
+\quad
+f = -\Delta u.
+$$
+
+Explicitly, $f = -2\cos(x_1+x_2) + 2x_1\sin(x_1+x_2)$. Dirichlet data on $\Gamma$ again comes from the exact $u$. Discretization: $p = 11$ on a $7\times 5$ panel rectangle. This checks that leaves store and apply the body-load operators correctly through the hierarchy.
+
+<figure style="margin: 1.5rem 0;">
+  <img src="{{ '/assets/img/blog/hps/2d_body_flag1.png' | relative_url }}" alt="2D Laplace with body load: exact, numerical, and error surfaces" style="display: block; width: 100%; max-width: 100%; height: auto;">
+  <figcaption style="text-align: center;">Laplace with manufactured body load. Same triptych layout as above.</figcaption>
+</figure>
+
+### 1D Laplace smoke test
+
+The 1D analogue is the simplest check that the leaf merge is wired correctly:
+
+$$
+\begin{cases}
+-u'' = 0 & \text{on an interval}, \\
+u = g & \text{at the two endpoints},
+\end{cases}
+\qquad
+u(x) = 3x + 1.
+$$
+
+A linear field has Laplacian exactly zero, so any bug in the operator or the DtN merge shows up immediately. Discretization: $p = 11$ with 4 panels.
+
+<figure style="margin: 1.5rem 0;">
+  <img src="{{ '/assets/img/blog/hps/1d_homogeneous_flag1.png' | relative_url }}" alt="1D homogeneous Laplace exact, numerical overlay, and error" style="display: block; width: 100%; max-width: 100%; height: auto;">
+  <figcaption style="text-align: center;">1D homogeneous Laplace. Exact field, numerical overlay, and pointwise error.</figcaption>
+</figure>
+
+The gallery also has Helmholtz and variable-coefficient runs. The three plots above are enough to see the pattern: prescribe Dirichlet data from a known field, solve with HPS, and measure the error against that field.
+
+## Key Takeaways
+
+1. **Leaves own the PDE.** On each panel you build $S^\tau$ and $T^\tau$ from the local spectral discretization.
+2. **Parents only talk about boundaries.** Merging never revisits interiors. Continuity of $u$ and matching of flux on $J_3$ are enough.
+3. **The merge is a Schur complement.** That block formula for $T^\tau$ is the whole hierarchical step.
 4. **Scaling is mechanical.** Deeper trees are the same merge repeated, which is why the partition drawing matters as much as the algebra.
 
-When the repo is public I will add a projects card and a proper reproduction path. For now these notes are the readable version of the method as I understand it.
+## References
+
+* Per-Gunnar Martinsson, *Fast Direct Solvers for Elliptic PDEs*, SIAM, 2019.
+  - [Chapter 25](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch25)
+  - [Chapter 26](https://epubs.siam.org/doi/10.1137/1.9781611976045.ch26)

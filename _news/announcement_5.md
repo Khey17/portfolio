@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-New blog notes on the Hierarchical Poincaré–Steklov method for linear elliptic PDEs.
+New blog notes: Understanding Hierarchical Poincaré–Steklov Method.

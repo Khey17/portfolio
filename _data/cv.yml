@@ -50,13 +50,13 @@ cv:
           - "Member of a research software engineering team building an on-premise LLM assistant for University of Delaware students, faculty, and staff."
           - "Benchmarking LLM inference and serving performance (throughput, latency, model selection) on NVIDIA DGX hardware to inform deployment decisions."
       - company: University of Delaware — Department of Mathematical Sciences
-        position: Research Assistant, Scientific Machine Learning
+        position: Research Assistant, Scientific Computing
         location: Newark, DE
         start_date: 2025-06
         end_date: 2026-06
         highlights:
-          - "Joined Dr. Ke Chen's group to build neural surrogates for nonlinear PDE solvers, replacing per-instance Newton iteration with amortized single-pass inference on new problem instances."
-          - "Established spectral ground-truth generation, dataset validation, and reproducible PyTorch experiment pipelines that underpin the project's training and evaluation workflow."
+          - "Built a hierarchical Poincaré–Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree."
+          - "Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy."
       - company: Sathyabama Institute of Science & Technology
         position: Teaching Assistant, Machine Learning
         location: Chennai, India

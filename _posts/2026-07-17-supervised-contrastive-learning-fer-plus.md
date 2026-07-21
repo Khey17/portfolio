@@ -6,6 +6,7 @@ description: "A reproducible FER+ case study showing why SupCon can match overal
 tags: computer-vision deep-learning contrastive-learning
 categories: research
 published: true
+related_posts: false
 toc:
   sidebar: left
 ---

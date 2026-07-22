@@ -7,11 +7,10 @@ first_name: Karthikheyaa
 middle_name:
 last_name: Kurra
 contact_note: >
-  Feel free to reach out — I'm always open to interesting conversations and collaborations. Reach me on Discord at <strong>comicnerd.</strong>
+  Feel free to reach out. I'm always open to interesting conversations and collaborations. Reach me on Discord at <strong>comicnerd.</strong>
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   Research Associate at the University of Delaware working on scientific machine learning for PDEs.
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
   <script defer src="/portfolio/assets/js/theme-toggle-fix.js"></script>
   <script defer src="/portfolio/assets/js/toc-mathjax.js"></script>

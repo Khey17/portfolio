@@ -100,7 +100,7 @@ Now that the file is redacted, Gemini takes a look. It sees something like: "Oka
 
 This is where we follow the standard rules fintechs use. We check for overdrafts, shady transactions, and income proof. Everything turns into a 100-point scoring system.
 
-The threshold is 80. If you score 80 or above, you are automatically approved. If files are missing or the score is lower, it goes to a human reviewer to check the files. And if things look really shady, it is a total rejection. This way, we are not just letting the AI decide everything. We are using math and giving people a real explanation if they do not get the offer.
+The threshold is 95. If you score 95 or above, you are automatically approved. If files are missing or the score is lower, it goes to a human reviewer to check the files. And if things look really shady, it is a total rejection. This way, we are not just letting the AI decide everything. We are using math and giving people a real explanation if they do not get the offer.
 
 ## Moving to the cloud: the real challenge
 

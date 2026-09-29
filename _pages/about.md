@@ -28,7 +28,7 @@ latest_posts:
 
 I am a **Research Associate** in the Department of Mathematical Sciences at the **University of Delaware**, working with Dr. Ke Chen on scientific machine learning for partial differential equations (PDEs). I found the idea of solving PDEs using neural networks interesting and how we can leverage traditional numerical solvers.
 
-My current research focuses on building a numerical solvers that combine neural networks with classical numerical methods that can solve high frequency nonlinear elliptic PDEs where PINNs often struggle on large domains. I'm also part of Dr. Ke Chen's reading group where we explore new research papers on topics like computational optimal transport, equivariant networks, and whatever else is on the table that week.
+My current research focuses on building a numerical solvers that combine neural networks with classical numerical methods that can solve high frequency nonlinear elliptic PDEs on large domains where PINNs often struggle. I'm also part of Dr. Ke Chen's reading group where we explore new research papers on topics like computational optimal transport, equivariant networks, and whatever else is on the table that week.
 
 I am also auditing a doctoral-level course in Artificial Intelligence: Scientific Machine Learning, taught by Dr. Yixiang Deng. The course project I am working on starts from [Wang et al. (2025)](https://arxiv.org/pdf/2506.19243) on high-precision PINNs for singularity formation in the 2D Boussinesq equations, a model problem for blow-up in 3D Euler and Navier–Stokes. We are beginning by reproducing those results.
 

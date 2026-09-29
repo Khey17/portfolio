@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "I Deployed AWS’s Official RAG Template on a Saturday"
+title: "Notes from Deploying AWS’s Elastic RAG Template"
 date: 2026-03-23 12:00:00-0400
 description: "A weekend with Amazon Bedrock, Elastic Cloud, and Terraform that turned into bugs in an official AWS sample and a PR back to the repo."
 tags: aws rag terraform bedrock

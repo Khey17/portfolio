@@ -3,7 +3,7 @@
 % Based on Jake Gutierrez's template (jakegut/resume), MIT license
 %------------------------
 
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10pt]{article}
 
 \usepackage{latexsym}
 \usepackage[empty]{fullpage}
@@ -39,8 +39,8 @@
 
 % Sections formatting
 \titleformat{\section}{
-  \vspace{-6pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+  \vspace{-8pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-8pt}]
 
 % Ensure that generated pdf is machine readable/ATS parsable
 \pdfgentounicode=1
@@ -54,11 +54,11 @@
 }
 
 \newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+  \vspace{2pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textbf{#1} & #2 \\
       \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}\vspace{-4pt}
 }
 
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
@@ -68,7 +68,7 @@
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-7pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-8pt}}
 
 %-------------------------------------------
 %%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -77,10 +77,10 @@
 
 %----------HEADING----------
 \begin{center}
-    \textbf{\Huge \scshape Karthikheyaa Kurra} \\ \vspace{1pt}
-    \href{mailto:karth@udel.edu}{\underline{karth@udel.edu}} $|$
+    \textbf{\huge \scshape Karthikheyaa Kurra} \\ \vspace{2pt}
+    \href{mailto:karth@udel.edu}{karth@udel.edu} $|$
     \href{https://github.com/Khey17}{\underline{GitHub}} $|$
-    \href{https://khey17.github.io/portfolio/}{\underline{Portfolio}} $|$
+    \href{https://khey17.github.io/portfolio/}{\underline{Website}} $|$
     \href{https://linkedin.com/in/karthikheyaa}{\underline{LinkedIn}}
 \end{center}
 
@@ -106,26 +106,28 @@
       {Research Associate, Scientific Machine Learning}{Jun 2026 -- Present}
       {Department of Mathematical Sciences, University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
       \resumeItemListStart
-        \resumeItem{Writing a paper on hybrid PDE solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE in a non-iterative manner through learned surrogates and by leveraging hierarchical structure.}
-        \resumeItem{Simulated high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines.}
-        \resumeItem{Investigated architecture through ablation studies covering network depth, normalization, and physics-informed residual losses with adaptive loss balancing, alongside computing the complexity and wall-clock time of inference pipeline.}
-        \resumeItem{Built and Maintained a codebase by writing good code, unit tests, smoke tests and made weekly reports to track research progress.}
+        \resumeItem{Authoring a paper on numerical Partial Differential Equation solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE on a large domain without linearizing the equation}
+        \resumeItem{Built a Newton solver that generates synthetic training data by solving nonlinear PDE problems using chebyshev discretization to machine precision and produces reliable ground truth with quadratic error decay}
+        \resumeItem{Trained a deep learning model to predict the solution field with a relative error of 0.8\% on the high frequency variable co-efficient PDE test data}
+        \resumeItem{Developed and modularized a reproducible and reusable research codebase using Git for version control to maintain the experiment tracking and comprehensive documentation}
+      \resumeItemListEnd
+
+\resumeSubheading
+      {Software Engineer Intern}{Jan 2026 -- May 2026}
+      {Best Egg, University of Delaware \, (Advisor: Mike Urban)}{Newark, DE}
+      \resumeItemListStart
+        \resumeItem{Contributed to a software system to process financial documents (bank statements, paystubs, tax), by encrypting personal information, and extracted income and balance data for bank review}
+        \resumeItem{Built statistical and AI models to generate confidence scores with a 95\% threshold to predict the loan approval for the customers}
+        \resumeItem{Enforced safety protocols and guardrails to detect patterns for fradulent documents and to handle edge cases like incorrect or insufficient documents}
+        \resumeItem{Deployed the system as 3 services on Google Cloud Run with CI/CD through GitHub Actions, and set up a Grafana dashboard to track elements like throughput, failures, and redaction counts}
       \resumeItemListEnd
 
     \resumeSubheading
-      {Research Assistant, Scientific Computing}{Jun 2025 -- Jun 2026}
+      {Research Assistant, Scientific Machine Learning}{Jun 2025 -- Jun 2026}
       {Department of Mathematical Sciences, University of Delaware \, (Advisor: Dr.\ Ke Chen)}{Newark, DE}
       \resumeItemListStart
-        \resumeItem{Built a hierarchical Poincar\'e--Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree.}
-        \resumeItem{Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy.}
-      \resumeItemListEnd
-
-      \resumeSubheading
-      {Teaching Assistant, Machine Learning}{Jan 2024 -- Apr 2024}
-      {Sathyabama Institute of Science \& Technology}{Chennai, India}
-      \resumeItemListStart
-        \resumeItem{Graded assignments, midterms and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course.}
-        \resumeItem{Led review sessions and tutorials on mathematics for machine learning, covering lecture material on matrix algebra and multivariable calculus.}
+        \resumeItem{Implemented a hierarchical linear partial differential equation (PDE) solver using spectral methods and Chebyshev discretization to efficiently compute large domains.}
+        \resumeItem{Validated the solver using the method of manufactured solutions across 6 PDE fields, achieving $O(N \log N)$ time complexity and near-zero spectral accuracy (machine precision).}
       \resumeItemListEnd
 
     \resumeSubheading
@@ -133,7 +135,15 @@
       {Indian Institute of Technology, Hyderabad}{Hyderabad, India}
       \resumeItemListStart
         \resumeItem{Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation.}
-        \resumeItem{Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab.}
+        \resumeItem{Analyzed learned t-SNE embeddings with models producing accuracy of 80.7\% and 79.4\% respectively on imbalanced data}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Teaching Assistant, Machine Learning}{Jan 2023 -- Apr 2023}
+      {Sathyabama Institute of Science \& Technology}{Chennai, India}
+      \resumeItemListStart
+        \resumeItem{Graded assignments, homework; prepared lecture slides, supplementary notes for the undergraduate machine learning course}
+        \resumeItem{Led review sessions on mathematics for machine learning, covering matrix algebra and multivariable calculus.}
       \resumeItemListEnd
 
     \resumeSubheading

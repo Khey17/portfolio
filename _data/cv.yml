@@ -37,26 +37,28 @@ cv:
         start_date: 2026-06
         end_date: present
         highlights:
-          - "Writing a paper on hybrid PDE solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE in a non-iterative manner through learned surrogates and by leveraging hierarchical structure."
-          - "Simulated high-precision ground-truth generation via Chebyshev spectral discretizations and Newton iteration, automated dataset-validation suites, and reproducible PyTorch training and evaluation pipelines."
-          - "Investigated architecture through ablation studies covering network depth, normalization, and physics-informed residual losses with adaptive loss balancing, alongside computing the complexity and wall-clock time of inference pipeline."
-          - "Built and Maintained a codebase by writing good code, unit tests, smoke tests and made weekly reports to track research progress."
+          - "Authoring a paper on numerical Partial Differential Equation solvers that combine classical methods and neural networks to solve a nonlinear elliptic PDE on a large domain without linearizing the equation"
+          - "Built a Newton solver that generates synthetic training data by solving nonlinear PDE problems using chebyshev discretization to machine precision and produces reliable ground truth with quadratic error decay"
+          - "Trained a deep learning model to predict the solution field with a relative error of 0.8% on the high frequency variable co-efficient PDE test data"
+          - "Developed and modularized a reproducible and reusable research codebase using Git for version control to maintain the experiment tracking and comprehensive documentation"
+      - company: Best Egg, University of Delaware
+        position: Software Engineer Intern
+        location: Newark, DE
+        start_date: 2026-01
+        end_date: 2026-05
+        highlights:
+          - "Contributed to a software system to process financial documents (bank statements, paystubs, tax), by encrypting personal information, and extracted income and balance data for bank review"
+          - "Built statistical and AI models to generate confidence scores with a 95% threshold to predict the loan approval for the customers"
+          - "Enforced safety protocols and guardrails to detect patterns for fradulent documents and to handle edge cases like incorrect or insufficient documents"
+          - "Deployed the system as 3 services on Google Cloud Run with CI/CD through GitHub Actions, and set up a Grafana dashboard to track elements like throughput, failures, and redaction counts"
       - company: University of Delaware — Department of Mathematical Sciences
-        position: Research Assistant, Scientific Computing
+        position: Research Assistant, Scientific Machine Learning
         location: Newark, DE
         start_date: 2025-06
         end_date: 2026-06
         highlights:
-          - "Built a hierarchical Poincaré–Steklov (HPS) numerical solver for linear elliptic PDEs: Chebyshev spectral grids on leaf boxes, local Dirichlet-to-Neumann maps, and Schur-complement merges up the tree."
-          - "Verified the solver on manufactured solutions (Laplace, Poisson, Helmholtz) and wrote notes documenting the leaf operators, merge step, and scaling of the hierarchy."
-      - company: Sathyabama Institute of Science & Technology
-        position: Teaching Assistant, Machine Learning
-        location: Chennai, India
-        start_date: 2024-01
-        end_date: 2024-04
-        highlights:
-          - "Graded assignments, midterms and homework; prepared lecture slides and supplementary notes for the undergraduate machine learning course."
-          - "Led review sessions and tutorials on mathematics for machine learning, covering lecture material on matrix algebra and multivariable calculus."
+          - "Implemented a hierarchical linear partial differential equation (PDE) solver using spectral methods and Chebyshev discretization to efficiently compute large domains."
+          - "Validated the solver using the method of manufactured solutions across 6 PDE fields, achieving O(N log N) time complexity and near-zero spectral accuracy (machine precision)."
       - company: Indian Institute of Technology, Hyderabad
         position: Research Intern, Computer Vision
         location: Hyderabad, India
@@ -64,7 +66,15 @@ cv:
         end_date: 2023-06
         highlights:
           - "Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation."
-          - "Analyzed learned embeddings with t-SNE to diagnose class separation issues and delivered a reproducible codebase to the lab."
+          - "Analyzed learned t-SNE embeddings with models producing accuracy of 80.7% and 79.4% respectively on imbalanced data"
+      - company: Sathyabama Institute of Science & Technology
+        position: Teaching Assistant, Machine Learning
+        location: Chennai, India
+        start_date: 2023-01
+        end_date: 2023-04
+        highlights:
+          - "Graded assignments, homework; prepared lecture slides, supplementary notes for the undergraduate machine learning course"
+          - "Led review sessions on mathematics for machine learning, covering matrix algebra and multivariable calculus."
       - company: The University of Texas at Dallas
         position: Summer Intern
         location: Dallas, TX
@@ -99,10 +109,3 @@ cv:
 
     Reading Groups:
       - bullet: "Scientific Machine Learning Reading Group, University of Delaware (Advisor: Dr. Ke Chen), 2025–Present. Weekly seminar with rotating student presentations of research literature; topics include Computational Optimal Transport (Peyré & Cuturi), Equivariant Neural Networks, and One-Shot Learning."
-
-
-
-
-
-
-

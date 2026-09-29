@@ -1,0 +1,191 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> I Deployed AWS’s Official RAG Template on a Saturday | Karthikheyaa Kurra </title> <meta name="author" content="Karthikheyaa Kurra"> <meta name="description" content="A weekend with Amazon Bedrock, Elastic Cloud, and Terraform that turned into bugs in an official AWS sample and a PR back to the repo."> <meta name="keywords" content="portfolio, personal-website, projects"> <meta property="og:site_name" content="Karthikheyaa Kurra"> <meta property="og:type" content="article"> <meta property="og:title" content="Karthikheyaa Kurra | I Deployed AWS’s Official RAG Template on a Saturday"> <meta property="og:url" content="https://khey17.github.io/portfolio/blog/2026/aws-rag-template-saturday/"> <meta property="og:description" content="A weekend with Amazon Bedrock, Elastic Cloud, and Terraform that turned into bugs in an official AWS sample and a PR back to the repo."> <meta property="og:locale" content="en"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="I Deployed AWS’s Official RAG Template on a Saturday"> <meta name="twitter:description" content="A weekend with Amazon Bedrock, Elastic Cloud, and Terraform that turned into bugs in an official AWS sample and a PR back to the repo."> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/portfolio/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.css" integrity="sha256-zTN0r+0OKaIv2xqeNNIYxNk0pWJ6+IqPGc1iDgVzWF0=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/portfolio/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%92%BC&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/portfolio/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://khey17.github.io/portfolio/blog/2026/aws-rag-template-saturday/"> <script src="/portfolio/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/portfolio/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/portfolio/"> <span class="font-weight-bold">Karthikheyaa</span> Kurra </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/portfolio/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/portfolio/blog/">blog <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/portfolio/projects/">projects </a> </li> <li class="nav-item "> <a class="nav-link" href="/portfolio/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="row"> <div class="col-sm-3"> <nav id="toc-sidebar" class="sticky-top toc toc-sidebar" aria-label="Table of contents" data-toc-collapse="expanded" data-toc-collapse-depth=""></nav> </div> <div class="col-sm-9"> <div class="post"> <header class="post-header"> <h1 class="post-title">I Deployed AWS’s Official RAG Template on a Saturday</h1> <p class="post-meta"> Created on March 23, 2026 </p> <p class="post-tags"> <a href="/portfolio/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/portfolio/blog/tag/aws"> <i class="fa-solid fa-hashtag fa-sm"></i> aws</a>   <a href="/portfolio/blog/tag/rag"> <i class="fa-solid fa-hashtag fa-sm"></i> rag</a>   <a href="/portfolio/blog/tag/terraform"> <i class="fa-solid fa-hashtag fa-sm"></i> terraform</a>   <a href="/portfolio/blog/tag/bedrock"> <i class="fa-solid fa-hashtag fa-sm"></i> bedrock</a>   ·   <a href="/portfolio/blog/category/projects"> <i class="fa-solid fa-tag fa-sm"></i> projects</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>It was a Saturday. I got an email from AWS about a ready-to-deploy RAG pipeline template. Elastic Cloud for vector storage, AWS Lambda for orchestration, Terraform for deployment. The pitch was “skip weeks of integration work.”</p> <p>I looked at the documentation, made a plan, and honestly thought this should be a piece of cake.</p> <p>Spoiler: it was not.</p> <p>I wanted to learn as I built, treat every step as something I could write down later. This post is that. The long version with every command is in the <a href="https://github.com/Khey17/sample-patterns-for-aws-marketplace/blob/fix/aws-provider-version-constraint/solution-templates/elastic/end-to-end-rag-terraform/README.md" rel="external nofollow noopener" target="_blank">README</a>. Original writeup is also on <a href="https://medium.com/@karthikheyaa/i-deployed-awss-official-rag-template-on-a-saturday-here-s-what-actually-happened-8108641ededd" rel="external nofollow noopener" target="_blank">Medium</a>.</p> <h2 id="what-even-is-a-rag-pipeline">What even is a RAG pipeline?</h2> <p>Regular LLMs answer from training data. RAG is: upload your documents, store them in a searchable form, and when you ask a question the system pulls the relevant chunks and hands them to the model.</p> <p>The picture that stuck:</p> <blockquote> <p>S3 is the filing cabinet. Elastic is the memory. Bedrock is the brain.</p> </blockquote> <p><strong>Ingestion (documents go in):</strong></p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>S3 upload → Lambda Vectorizer → Bedrock Titan Embeddings → Elastic Cloud (vector index)
+</code></pre></div></div> <p><strong>Query (questions come in):</strong></p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Your question → Elastic similarity search → Top relevant chunks → Bedrock LLM → Answer
+</code></pre></div></div> <p>Keyword search matches exact words. You search “car,” it finds “car.” Vector search matches meaning. You search “car,” it can still find “vehicle.” Embedding models turn text into numbers, and similar meanings sit close together. That is why RAG is actually useful.</p> <h2 id="terraform-in-one-analogy">Terraform, in one analogy</h2> <p>AWS is the city. It owns the land, enforces the rules, and sends the bill.</p> <p>Terraform is the architect: picks the region, lays the network, puts up Lambda, S3, API Gateway, and the PrivateLink tunnel to Elastic.</p> <p>Docker is the interior: the code running inside Lambda.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>terraform init    → downloads providers (like npm install)
+terraform plan    → dry run, nothing gets built
+terraform apply   → actually builds it
+terraform destroy → tears it down
+</code></pre></div></div> <p>Two config values from me, 64 AWS resources. Someone packed weeks of AWS knowledge into a template. We just filled in the form. Except it did not deploy.</p> <h2 id="the-setup-before-things-broke">The setup, before things broke</h2> <ul> <li>AWS account with CLI configured</li> <li>Terraform ≥ 1.14.7</li> <li>Docker Desktop</li> <li>Git</li> </ul> <p>Start Elastic Cloud from <strong>AWS Marketplace</strong>, not elastic.co. That is what makes PrivateLink work. Elasticsearch → Hosted → us-east-1.</p> <p>Put Elastic credentials in Secrets Manager, not in a file that will end up in Git:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws secretsmanager create-secret <span class="se">\</span>
+  <span class="nt">--name</span> <span class="s2">"rag-elastic-credentials"</span> <span class="se">\</span>
+  <span class="nt">--region</span> us-east-1 <span class="se">\</span>
+  <span class="nt">--secret-string</span> <span class="s1">'{"username":"elastic","password":"YOUR_PASSWORD"}'</span>
+</code></pre></div></div> <p>Then clone the template and <code class="language-plaintext highlighter-rouge">terraform init</code> → <code class="language-plaintext highlighter-rouge">plan</code> → <code class="language-plaintext highlighter-rouge">apply</code>.</p> <p>Except it did not work. Not even close.</p> <h2 id="the-bugs">The bugs</h2> <p>The template is from AWS. Official. On their GitHub. And it had issues that blocked deployment before a single resource was created.</p> <p><strong>Version pin.</strong> <code class="language-plaintext highlighter-rouge">terraform init</code> failed on the first try. The template pins the AWS provider to an exact version, but a module it pulls in needs a higher one. Those two constraints cannot coexist. One character change in two files (<code class="language-plaintext highlighter-rouge">&gt;= 6.0.0</code> instead of <code class="language-plaintext highlighter-rouge">= 6.0.0</code>) fixes it. Finding which files took longer than the fix.</p> <p><strong>Availability zone.</strong> After that, the VPC endpoint failed. The template hardcoded <code class="language-plaintext highlighter-rouge">us-east-1a</code>. Elastic’s PrivateLink service does not run there, only in <code class="language-plaintext highlighter-rouge">b</code>, <code class="language-plaintext highlighter-rouge">c</code>, and <code class="language-plaintext highlighter-rouge">d</code>. I checked against AWS’s own API and put that in the PR.</p> <p><strong>Private Lambda images.</strong> The template points at a private ECR account your account cannot pull from. Recipe, no kitchen. I built the images from the included Dockerfiles and pushed them to my own ECR. The image is 3.3GB and Docker Desktop’s proxy kept dropping mid-upload. That part was not the template’s fault, just annoying. It got through after a few tries.</p> <p><strong>Deprecated Bedrock model.</strong> The agent Lambda had a model ID that no longer works. I swapped it for Amazon Nova Pro and had to parse the API Gateway body correctly (<code class="language-plaintext highlighter-rouge">json.loads</code> if it came in as a string).</p> <p>I wrote the actual diffs in the <a href="https://github.com/Khey17/sample-patterns-for-aws-marketplace/blob/fix/aws-provider-version-constraint/solution-templates/elastic/end-to-end-rag-terraform/README.md" rel="external nofollow noopener" target="_blank">README</a>. The point is not the patches. The official template could not deploy out of the box. Better to know that before you spend a Saturday on it.</p> <h2 id="and-then-it-worked">And then it worked</h2> <p>After the Terraform version, the AZ mismatch, the 3.3GB Docker push, and the dead model ID, I uploaded a document to S3 and sent a query:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST https://YOUR-API-URL/agent <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{"query": "What did Karth build on a Saturday?"}'</span>
+</code></pre></div></div> <p>Response:</p> <blockquote> <p>Karth built a fully working RAG pipeline on a Saturday. This pipeline utilized AWS Bedrock, Elastic Cloud, Lambda, Terraform, and API Gateway.</p> </blockquote> <p>That answer came from a document I uploaded. That moment was worth the frustrating hours.</p> <p>I submitted <a href="https://github.com/aws-samples/sample-patterns-for-aws-marketplace/pull/43" rel="external nofollow noopener" target="_blank">PR #43</a>. At the time it was the first human PR in that repo. Everything else was Dependabot.</p> <h2 id="what-i-actually-learned">What I actually learned</h2> <p>A <strong>region</strong> is a geographic area (<code class="language-plaintext highlighter-rouge">us-east-1</code> = Northern Virginia). An <strong>availability zone</strong> is a data center inside it (<code class="language-plaintext highlighter-rouge">a</code>, <code class="language-plaintext highlighter-rouge">b</code>, <code class="language-plaintext highlighter-rouge">c</code>, <code class="language-plaintext highlighter-rouge">d</code>). Services do not always run in every AZ. Always check.</p> <p>Terraform is a config file that talks to AWS. You describe what you want, it figures out the order.</p> <p>Do not put credentials in code. Secrets Manager is about $0.40/month per secret.</p> <p>Docker + Lambda: build for <code class="language-plaintext highlighter-rouge">linux/amd64</code> even on Apple Silicon, and use <code class="language-plaintext highlighter-rouge">--provenance=false</code> with buildx or Lambda will reject the image.</p> <p>Most errors in this project were solved by:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aws logs <span class="nb">tail</span> /aws/lambda/FUNCTION_NAME <span class="nt">--follow</span>
+</code></pre></div></div> <h2 id="cost">Cost</h2> <p>NAT Gateways plus PrivateLink is about $3.50/day if you leave it up. Always <code class="language-plaintext highlighter-rouge">terraform destroy</code> when you are done. You can <code class="language-plaintext highlighter-rouge">apply</code> again later.</p> <h2 id="links">Links</h2> <ul> <li><a href="https://github.com/aws-samples/sample-patterns-for-aws-marketplace/pull/43" rel="external nofollow noopener" target="_blank">PR to the official AWS repo</a></li> <li><a href="https://github.com/Khey17/sample-patterns-for-aws-marketplace/blob/fix/aws-provider-version-constraint/solution-templates/elastic/end-to-end-rag-terraform/README.md" rel="external nofollow noopener" target="_blank">README with the fixes</a></li> </ul> <p>Built on a Saturday. Took longer than expected. Worth it.</p> </div> </article> </div> </div> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Karthikheyaa Kurra. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. <script defer src="/portfolio/assets/js/theme-toggle-fix.js"></script> <script defer src="/portfolio/assets/js/toc-mathjax.js"></script> </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/portfolio/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/portfolio/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/portfolio/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/portfolio/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script defer src="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.js" integrity="sha256-lo/r+jQ81wWrxdIiiiEEd538z4+dTJTt+leOuAS7GCw=" crossorigin="anonymous"></script> <script src="/portfolio/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/portfolio/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/portfolio/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/portfolio/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/portfolio/assets/al_img_tools/js/zoom.js"></script> <script defer src="/portfolio/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/portfolio/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/portfolio/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/portfolio/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/portfolio/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Selected projects and research work.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/portfolio/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "Research Associate at the University of Delaware.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/portfolio/cv/";
+          },
+        },{id: "post-notes-on-the-sinkhorn-algorithm",
+        
+          title: 'Notes on the Sinkhorn Algorithm <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "Working notes and demos on entropic optimal transport and Sinkhorn, from a Computational OT reading seminar.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://khey17.github.io/sinkhorn-algorithm/", "_blank");
+          
+        },
+      },{id: "post-building-sentinel-nextgenai-execution-layer",
+        
+          title: "Building Sentinel: NextGenAI Execution Layer",
+        
+        description: "A privacy layer in front of an LLM so loan documents get processed without sending SSNs and income details to the model.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/portfolio/blog/2026/building-sentinel/";
+          
+        },
+      },{id: "post-i-deployed-aws-s-official-rag-template-on-a-saturday",
+        
+          title: "I Deployed AWS’s Official RAG Template on a Saturday",
+        
+        description: "A weekend with Amazon Bedrock, Elastic Cloud, and Terraform that turned into bugs in an official AWS sample and a PR back to the repo.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/portfolio/blog/2026/aws-rag-template-saturday/";
+          
+        },
+      },{id: "post-understanding-hierarchical-poincaré-steklov-method",
+        
+          title: "Understanding Hierarchical Poincaré–Steklov Method",
+        
+        description: "HPS for linear elliptic PDEs: leaf operators, merging boxes, and how the tree scales.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/portfolio/blog/2025/hierarchical-poincare-steklov-notes/";
+          
+        },
+      },{id: "post-supervised-contrastive-learning-on-imbalanced-facial-expressions",
+        
+          title: "Supervised Contrastive Learning on Imbalanced Facial Expressions",
+        
+        description: "A reproducible FER+ case study showing why SupCon can match overall accuracy yet fail badly on rare classes.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/portfolio/blog/2023/supervised-contrastive-learning-fer-plus/";
+          
+        },
+      },{id: "news-new-notes-on-the-sinkhorn-algorithm-from-our-computational-optimal-transport-reading-seminar-khey17-github-io-sinkhorn-algorithm-https-khey17-github-io-sinkhorn-algorithm",
+          title: 'New notes on the Sinkhorn algorithm from our Computational Optimal Transport reading seminar:...',
+          description: "",
+          section: "News",},{id: "projects-sinkhorn-algorithm-notes",
+          title: 'Sinkhorn Algorithm Notes',
+          description: "Notes and demos on entropic optimal transport and the Sinkhorn algorithm.",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/projects/sinkhorn-algorithm/";
+            },},{id: "projects-supervised-contrastive-learning-on-fer",
+          title: 'Supervised Contrastive Learning on FER+',
+          description: "Comparing SupCon and cross entropy on imbalanced facial expression recognition.",
+          section: "Projects",handler: () => {
+              window.location.href = "/portfolio/projects/supcontrast-fer-plus/";
+            },},{
+        id: 'social-cv',
+        title: 'CV',
+        section: 'Socials',
+        handler: () => {
+          window.open("/portfolio/assets/rendercv/rendercv_output/Karthikheyaa_Kurra_CV.pdf", "_blank");
+        },
+      },{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%6B%61%72%74%68@%75%64%65%6C.%65%64%75", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/khey17", "_blank");
+        },
+      },{
+        id: 'social-linkedin',
+        title: 'LinkedIn',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://www.linkedin.com/in/karthikheyaa", "_blank");
+        },
+      },{
+        id: 'social-discord',
+        title: 'Discord',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://discord.com/users/comicnerd.", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/portfolio/assets/al_search/js/shortcut-key.js"></script> </body> </html>

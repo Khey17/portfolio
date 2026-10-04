@@ -59,6 +59,14 @@ cv:
         highlights:
           - "Implemented a hierarchical linear partial differential equation (PDE) solver using spectral methods and Chebyshev discretization to efficiently compute large domains."
           - "Validated the solver using the method of manufactured solutions across 6 PDE fields, achieving O(N log N) time complexity and near-zero spectral accuracy (machine precision)."
+      - company: Sathyabama Institute of Science & Technology
+        position: Teaching Assistant, Machine Learning
+        location: Chennai, India
+        start_date: 2024-01
+        end_date: 2024-04
+        highlights:
+          - "Graded assignments, homework; prepared lecture slides, supplementary notes for the undergraduate machine learning course"
+          - "Led review sessions on mathematics for machine learning, covering matrix algebra and multivariable calculus."
       - company: Indian Institute of Technology, Hyderabad
         position: Research Intern, Computer Vision
         location: Hyderabad, India
@@ -67,14 +75,6 @@ cv:
         highlights:
           - "Case study applying supervised contrastive learning (Khosla et al., 2020) to facial expression recognition, comparing SupCon loss against a standard cross-entropy baseline in PyTorch with face detection and data augmentation."
           - "Analyzed learned t-SNE embeddings with models producing accuracy of 80.7% and 79.4% respectively on imbalanced data"
-      - company: Sathyabama Institute of Science & Technology
-        position: Teaching Assistant, Machine Learning
-        location: Chennai, India
-        start_date: 2023-01
-        end_date: 2023-04
-        highlights:
-          - "Graded assignments, homework; prepared lecture slides, supplementary notes for the undergraduate machine learning course"
-          - "Led review sessions on mathematics for machine learning, covering matrix algebra and multivariable calculus."
       - company: The University of Texas at Dallas
         position: Summer Intern
         location: Dallas, TX

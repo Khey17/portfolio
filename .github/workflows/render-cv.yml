@@ -14,6 +14,11 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  actions: write # to dispatch deploy.yml after committing the PDF
+# A newer push supersedes an in-flight render, since it renders from the newer tip.
+concurrency:
+  group: render-cv-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   rendercv:
     name: Render CV
@@ -32,9 +37,24 @@ jobs:
           name: RenderCV Output
           path: assets/rendercv/rendercv_output/Karthikheyaa_Kurra_CV.pdf
       - name: Push the changes
+        id: push
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
           git add assets/rendercv/rendercv_output/Karthikheyaa_Kurra_CV.pdf
-          git diff --staged --quiet || git commit -m "chore: render the latest CV"
-          git push
+          if git diff --staged --quiet; then
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "chore: render the latest CV"
+          # Other commits may have landed on the branch while the PDF was compiling.
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+      # Pushes made with GITHUB_TOKEN don't trigger other workflows, so the site
+      # would keep serving the old PDF; dispatch the deploy explicitly.
+      - name: Redeploy the site
+        if: steps.push.outputs.committed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref "${{ github.ref_name }}"
